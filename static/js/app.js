@@ -30,8 +30,7 @@ async function openApp() {
     getTheme();
     const ok = await sendLog("ragtext-git");
     const url = window.location.href;
-
-    console.info("url:", utl);
+    console.info("url:", url);
 
 
     if (!ok)
