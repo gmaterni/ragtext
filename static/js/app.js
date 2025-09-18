@@ -4,6 +4,7 @@
 import { UaLog } from "./services/ualog3.js";
 import { bindEventListener, showHtmlThread, wnds, Commands, TextInput, TextOutput, getTheme } from "./app_ui.js";
 import { AppMgr } from "./app_mgr.js";
+import { sendLog } from "./services/logger.js"
 import "./services/uadialog.js";
 
 const VERSIONE = " 0.1.2";
@@ -27,6 +28,14 @@ async function openApp() {
     release();
     await showHtmlThread();
     getTheme();
+    const ok = await sendLog("ragtext-git");
+    const url = window.location.href;
+
+    console.info("url:", utl);
+
+
+    if (!ok)
+      console.error("registrazione fallita");
   } catch (error) {
     console.error("Si è verificato un errore durante l'inizializzazione dell'app:", error);
   }
