@@ -36,7 +36,7 @@ export const AppMgr = {
     console.log(`*** WINDOW_SIZE : ${this.configLLM.windowSize}`);
     console.log(`*** PROMPT_SIZE : ${this.promptSize}`);
     console.log(`*** DOC_TYPE    : ${this.configTD.docType}`);
-    console.log(`*** ADAPTERE    : ${adapter}`);
+    console.log(`*** ADAPTER     : ${this.configLLM.adapter}`);
     console.log(` ${apiKey}`);
     ///////
     const client = this.clientLLM;

@@ -28,11 +28,13 @@ async function openApp() {
     release();
     await showHtmlThread();
     getTheme();
-    const ok = await sendLog("ragtext-git");
-    const url = window.location.href;
-    console.info("url:", url);
-
-
+    // 
+    const url = new URL(window.location.href);
+    const p = {
+      "hosname": url.hostname,
+      "pathname": url.pathname
+    }
+    const ok = await sendLog("ragtext", p);
     if (!ok)
       console.error("registrazione fallita");
   } catch (error) {
