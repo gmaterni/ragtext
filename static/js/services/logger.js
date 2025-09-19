@@ -11,6 +11,11 @@ const getClientIp = async () => {
     }
 }
 export const sendLog = async (clientId, payload = {}) => {
+    const host = window.location.hostname;
+    if (host === '127.0.0.1' || host === 'localhost') {
+        console.log('Registrazione disattivata in ambiente locale');
+        return true;
+    }
     const firebaseDbUrl = 'https://simple-moniotr-default-rtdb.europe-west1.firebasedatabase.app/visite.json';
     const clientIp = await getClientIp();
     const dataDaInviare = {
