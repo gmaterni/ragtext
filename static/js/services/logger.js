@@ -2,12 +2,12 @@
 const getClientIp = async () => {
     try {
         const response = await fetch('https://api.ipify.org?format=json');
-        if (!response.ok) return 'IP non recuperabile';
+        if (!response.ok) return 'xxx.xxx.xxx.xxx';
         const data = await response.json();
         return data.ip;
     } catch (error) {
         console.error('Errore nel recuperare l\'IP:', error);
-        return 'IP non recuperabile';
+        return 'err.xxx.xxx.xxx';
     }
 }
 export const sendLog = async (clientId, payload = {}) => {
