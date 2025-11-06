@@ -50,7 +50,11 @@ export const help0_html = `
     </div>
     <div>
         <strong>Nuova Conversazione</strong>
-        <p>Cancella la cronologia della conversazione attiva. Non cancella il Contesto né la Knowledge Basea.</p>
+        <p>Cancella la cronologia della conversazione attiva. Non cancella il Contesto né la Knowledge Base.</p>
+    </div>
+    <div>
+        <strong>Nuovo Contesto & Conversazione</strong>
+        <p>Cancella il Contesto e la cronologia della conversazione attiva, permettendo di iniziare una nuova analisi da zero.</p>
     </div>
 
     <hr>
@@ -60,7 +64,7 @@ export const help0_html = `
     <div>
         <strong>Pulsante 1 (send0)</strong>
         <p>
-            <strong>Creazione Knowledge Basea:</strong> Avvia il processo principale di analisi dei documenti caricati per creare una "Knowledge Base" unificata.
+            <strong>Creazione Knowledge Base:</strong> Avvia il processo principale di analisi dei documenti caricati per creare una "Knowledge Base" unificata.
         </p>
     </div>
     <div>
@@ -70,43 +74,72 @@ export const help0_html = `
         </p>
     </div>
     <div>
-        <strong>Pulsante 3 (send2 / Invio)</strong>
-        <p>
-            <strong>Conversazione:</strong> Invia la domanda all'LLM usando il "Contesto" creato per continuare o iniziare una conversazione.
-        </p>
-    </div>
-
+                    <strong>Pulsante 3 (send2 / Invio)</strong>
+                <p>
+                    <strong>Conversazione:</strong> Invia la domanda all'LLM usando il "Contesto" creato per continuare o iniziare una conversazione.
+                </p>
+            </div>
+            <div>
+                <strong>Cancella Input</strong>
+                <p>Cancella il testo inserito nel campo di input.</p>
+            </div>
     <hr>
 
     <!-- Menu Laterale -->
     <p class="center">Menu Laterale</p>
     <div>
-        <strong>README</strong> / <strong>QUICKSTART</strong>
-        <p>Mostrano rispettivamente la documentazione tecnica e la guida rapida.</p>
+        <strong>Informazioni Generali</strong>
+        <ul>
+            <li><strong>README:</strong> Mostra la documentazione tecnica approfondita.</li>
+            <li><strong>QUICKSTART:</strong> Guida rapida all'utilizzo dell'applicazione.</li>
+        </ul>
     </div>
     <div>
-        <strong>Elenco Documenti</strong>
-        <p>Mostra i documenti caricati. Puoi visualizzarli o cancellarli.</p>
+        <strong>Documenti</strong>
+        <ul>
+            <li><strong>Elenco Documenti:</strong> Mostra i documenti caricati. Puoi visualizzarli o cancellarli.</li>
+            <li><strong>Documenti di esempio:</strong> Carica file di testo di esempio per provare subito l'applicazione.</li>
+        </ul>
     </div>
     <div>
-        <strong>Knowledge Basea (KnBase)</strong>
-        <p>
-            - <strong>Visualizza:</strong> Mostra la KnBase attuale.<br>
-            - <strong>Archivia:</strong> Salva la KnBase attuale con un nome.<br>
-            - <strong>Elenco:</strong> Carica o elimina le KnBase salvate.
-        </p>
+        <strong>Configurazione</strong>
+        <ul>
+            <li><strong>Configurazione:</strong> Mostra la configurazione corrente del Provider LLM e del Tipo Documento selezionato.</li>
+            <li><strong>Calcolo Richieste:</strong> Calcola e mostra il numero di parti in cui verranno suddivisi i documenti caricati per la creazione della Knowledge Base, utile per stimare le richieste all'LLM.</li>
+        </ul>
+    </div>
+    <div>
+        <strong>Knowledge Base (KnBase)</strong>
+        <ul>
+            <li><strong>Visualizza:</strong> Mostra la Knowledge Base attuale.</li>
+            <li><strong>Archivia:</strong> Salva la Knowledge Base attuale con un nome.</li>
+            <li><strong>Elenco:</strong> Carica o elimina le Knowledge Base salvate.</li>
+        </ul>
     </div>
     <div>
         <strong>Contesto</strong>
-        <p>
-            - <strong>Visualizza:</strong> Mostra il Contesto attuale.<br>
-            - <strong>Archivia:</strong> Salva il Contesto attuale con un nome.<br>
-            - <strong>Elenco:</strong> Carica o elimina i Contesti salvati.
-        </p>
+        <ul>
+            <li><strong>Visualizza:</strong> Mostra il Contesto attuale.</li>
+            <li><strong>Archivia:</strong> Salva il Contesto attuale con un nome.</li>
+            <li><strong>Elenco:</strong> Carica o elimina i Contesti salvati.</li>
+            <li><strong>Domanda iniziale:</strong> Mostra la domanda utilizzata per creare il Contesto corrente.</li>
+            <li><strong>Risposta:</strong> Mostra la risposta generata dall'LLM basata sul Contesto.</li>
+        </ul>
     </div>
     <div>
-        <strong>Documenti di esempio</strong>
-        <p>Carica file di testo di esempio per provare subito l'applicazione.</p>
+        <strong>Conversazione</strong>
+        <ul>
+            <li><strong>Visualizza:</strong> Mostra l'intera cronologia della conversazione corrente.</li>
+            <li><strong>Archivia:</strong> Salva la conversazione corrente con un nome.</li>
+            <li><strong>Elenco:</strong> Carica o elimina le conversazioni archiviate.</li>
+        </ul>
+    </div>
+    <div>
+        <strong>Gestione Dati</strong>
+        <ul>
+            <li><strong>Elenco Dati:</strong> Mostra un riepilogo di tutti i dati salvati nell'applicazione (Knowledge Base, Contesti, Conversazioni, configurazioni).</li>
+            <li><strong>Cancella Dati:</strong> Permette di cancellare selettivamente o totalmente i dati salvati.</li>
+        </ul>
     </div>
 </div>
 `;
@@ -183,11 +216,11 @@ export const help2_html = `
     <div>
         <strong>Scenario 1: Inizio da Zero</strong>
         <p>
-            Parti dai tuoi documenti per creare una nuova Knowledge Basea e iniziare una conversazione.
+            Parti dai tuoi documenti per creare una nuova Knowledge Base e iniziare una conversazione.
         </p>
         <ol>
             <li><strong>Carica Documenti:</strong> Usa <strong>"Documenti di esempio"</strong> dal menu o <strong>"Upload file"</strong> per caricare i tuoi file.</li>
-            <li><strong>Crea Knowledge Basea:</strong> Clicca il pulsante <strong>(1)</strong> per analizzare i documenti e creare la <em>Knowledge Base</em>. Al termine, puoi salvarla usando il menu <strong>Knowledge Basea > Archivia</strong>.</li>
+            <li><strong>Crea Knowledge Base:</strong> Clicca il pulsante <strong>(1)</strong> per analizzare i documenti e creare la <em>Knowledge Base</em>. Al termine, puoi salvarla usando il menu <strong>Knowledge Base > Archivia</strong>.</li>
             <li><strong>Crea Contesto:</strong> Scrivi una domanda specifica nel campo di input e clicca il pulsante <strong>(2)</strong>. Questo estrae le informazioni pertinenti dalla Knowledge Base e crea un <em>Contesto</em>.</li>
             <li><strong>Conversa:</strong> Fai la stessa domanda (o una simile) e premi <strong>Invio</strong> (o il pulsante <strong>(3)</strong>) per avviare la conversazione basata sul Contesto appena creato.</li>
         </ol>
@@ -197,14 +230,14 @@ export const help2_html = `
 
     <!-- SCENARIO 2 -->
     <div>
-        <strong>Scenario 2: Inizio da una Knowledge Basea Esistente</strong>
+        <strong>Scenario 2: Inizio da una Knowledge Base Esistente</strong>
         <p>
             Usa una <em>Knowledge Base</em> che hai già salvato per iniziare una nuova indagine, senza ri-analizzare i documenti.
         </p>
         <ol>
-            <li><strong>Carica Knowledge Basea:</strong>
+            <li><strong>Carica Knowledge Base:</strong>
                 <ul>
-                    <li>Vai nel menu laterale a <strong>Knowledge Basea > Elenco</strong>.</li>
+                    <li>Vai nel menu laterale a <strong>Knowledge Base > Elenco</strong>.</li>
                     <li>Trova la base dati che ti interessa e clicca su <strong>"Carica"</strong>.</li>
                 </ul>
             </li>
