@@ -40,7 +40,7 @@ export const AppMgr = {
     const model = this.configLLM.model;
     const promptSize = this.promptSize;
     const docType = this.configTD.docType;
-    const client = LlmProvider.getclient();
-    ragEngine.init(client, model, promptSize, docType);
+    this.clientLLM = LlmProvider.getclient();
+    ragEngine.init(this.clientLLM, model, promptSize, docType);
   },
 };

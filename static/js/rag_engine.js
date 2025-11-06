@@ -12,7 +12,19 @@ import { BuildStateMgr } from "./services/build_state_mgr.js";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const logMessages = (payload) => {
+    const msgs = payload.messages;
+    console.debug("*** messages **************************************");
+    for (const m of msgs) {
+        console.debug(m.role);
+        console.debug(m.content);
+        console.debug("-------------------------------------")
+    }
+}
+
+
 const sendRequest = async (client, payload, errorTag) => {
+    // logMessages(payload);
     const MAX_RETRIES = 3;
     const RETRY_DELAY_MS = 5000;
     let last_rr = null;
@@ -132,6 +144,7 @@ export const ragEngine = {
 
     async _extractDataChunk(chunk) {
         const messages = promptBuilder.extractionPrompt(chunk, this.docType);
+        // console.debug("_extractDataChunkt messages;\n", messages);
         const payload = {
             model: this.model,
             messages: messages,
@@ -149,6 +162,7 @@ export const ragEngine = {
     async _unifyContents(lst) {
         const content = lst.join("\n\n---\n\n");
         const messages = promptBuilder.unificationPrompt(content, this.docType);
+        // console.debug("_unifyContent messages;\n", messages);
         const payload = {
             model: this.model,
             messages: messages,
@@ -166,6 +180,7 @@ export const ragEngine = {
     async _extractContext(query) {
         const knBase = await idbMgr.read(DATA_KEYS.KEY_KNBASE);
         const messages = promptBuilder.extractorPrompt(knBase, query, this.docType);
+        // console.debug("_extractContext messages;\n", messages);
         const payload = {
             model: this.model,
             messages: messages,
@@ -182,6 +197,8 @@ export const ragEngine = {
 
     async _getAnswer(context, history) {
         const messages = promptBuilder.answerPrompt(context, history);
+        // AAA log messages
+        // console.debug("_getAnswer messages;\n", messages);
         const payload = {
             model: this.model,
             messages: messages,
@@ -214,13 +231,6 @@ export const ragEngine = {
     async runConversation(query) {
         let context = await idbMgr.read(DATA_KEYS.KEY_CONTEXT);
         if (!context) {
-            context = `
-Sei un assistente AI progettato per gestire conversazioni dinamiche.
-Elabora la risposta alla richiesta dell'utente basandoti sulla conversazione precedente.
-Interpreta l'intento dell'utente.
-Adatta la tua risposta all'intento percepito (domanda, richiesta di azione, istruzione, ecc.).
-Se l'intento non è chiaro, chiedi gentilmente chiarimenti.
-`;
             this.history = await idbMgr.read(DATA_KEYS.KEY_THREAD);
             if (!this.history) this.history = [];
             this.history.push(`question: ${query}`);

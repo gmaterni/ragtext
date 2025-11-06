@@ -205,7 +205,7 @@ import { FirebaseLogger } from "./services/firbaselogger.js";
 import { WebId } from "./services/webuser_id.js";
 import "./services/uadialog.js";
 
-const VERSIONE = " 0.1.6";
+const VERSIONE = " 0.1.8";
 console.log("*** VERSIONE:", VERSIONE)
 
 async function openApp() {

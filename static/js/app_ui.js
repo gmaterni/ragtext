@@ -357,7 +357,6 @@ export const TextInput = {
     Spinner.show();
     const query = this.inp.value.trim();
     try {
-      // const history = await AppMgr.runConversation(query);
       const webid = WebId.get();
       FirebaseLogger.sendLog("send2", webid)
       AppMgr.initConfig();
@@ -383,7 +382,6 @@ export const TextInput = {
   clear() {
     this.inp.value = "";
     this.inp.focus();
-
   }
 
 };
