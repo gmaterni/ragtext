@@ -415,8 +415,15 @@ export const TextOutput = {
     out.textContent = "";
   },
   async clearHistory() {
-    const ok = await confirm("Confermi nuova conversazione? ");
+    const ok = await confirm("Confermi nuova conversazione ? ");
     if (!ok) return;
+    await idbMgr.delete(DATA_KEYS.KEY_THREAD);
+    setResponseHtml("");
+  },
+  async clearHistoryContext() {
+    const ok = await confirm("Confermi nuovo Contesto & Conversazione ?  ");
+    if (!ok) return;
+    await idbMgr.delete(DATA_KEYS.KEY_CONTEXT);
     await idbMgr.delete(DATA_KEYS.KEY_THREAD);
     setResponseHtml("");
   },
@@ -1059,9 +1066,9 @@ export function bindEventListener() {
 
   // TextOutput
   document.querySelector(".copy-output").addEventListener("click", () => TextOutput.copy());
-  // document.querySelector(".clear-output").addEventListener("click", () => TextOutput.clear());
   document.querySelector(".wnd-output").addEventListener("click", () => TextOutput.openWnd());
-  document.querySelector(".clear-history").addEventListener("click", () => TextOutput.clearHistory());
+  document.querySelector("#clear-history1").addEventListener("click", () => TextOutput.clearHistory());
+  document.querySelector("#clear-history2").addEventListener("click", () => TextOutput.clearHistoryContext());
 
   // commands
   const btn = document.querySelector("#id-menu-btn");

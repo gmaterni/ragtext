@@ -24,7 +24,7 @@ const logMessages = (payload) => {
 
 
 const sendRequest = async (client, payload, errorTag) => {
-    // logMessages(payload);
+    logMessages(payload);
     const MAX_RETRIES = 3;
     const RETRY_DELAY_MS = 5000;
     let last_rr = null;

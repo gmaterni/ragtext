@@ -51,8 +51,10 @@
 @dark-btn-send0-hover-bg: lighten(@dark-color1, 10%);
 @dark-btn-send1-bg: @dark-color3;
 @dark-btn-send1-hover-bg: lighten(@dark-color3, 10%);
+
 @dark-btn-send2-bg: @dark-color2;
 @dark-btn-send2-hover-bg: lighten(@dark-color2, 10%);
+
 @dark-wnd-bg: lighten(@dark-bg, 5%);
 @dark-wnd-border-shadow: darken(@dark-color3, 10%);
 @dark-wnd-pre-color: lighten(@dark-color3, 30%);
@@ -518,7 +520,8 @@ div.container {
   .copy-output,
   .wnd-output,
   .clear-output,
-  .clear-history {
+  .clear-history,
+  .clear-history1 {
     box-sizing: border-box;
     border: none;
     padding: 10px;
@@ -1199,6 +1202,12 @@ div.container {
       background: @btn-send0-bg;
       &:hover {
         background: @btn-send0-hover-bg;
+      }
+    }
+    .clear-history1 {
+      background: @btn-send1-bg;
+      &:hover {
+        background: @btn-send1-hover-bg;
       }
     }
     .copy-output.copied {
