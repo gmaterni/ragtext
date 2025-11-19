@@ -54,6 +54,12 @@ export const DocsMgr = {
     return false;
   },
 
+  deleteSelected(names) {
+    names.forEach(name => {
+      this.delete(name);
+    });
+  },
+
   deleteAll() {
     this._names.forEach(name => {
       UaDb.delete(`idoc_${name}`);

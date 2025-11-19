@@ -652,11 +652,19 @@ const elencoDocs = () => {
   const jfh = UaJtfh();
   jfh.append('<div class="docs-dialog">');
   jfh.append("<h4>Elenco Documenti</h4>");
+
   if (arr.length > 0) {
+    jfh.append(`
+      <div class="delete-actions" style="text-align: center; margin-bottom: 15px;">
+        <button id="delete-selected-docs-btn" class="btn-danger">Cancella Documenti Selezionati</button>
+      </div>
+    `);
+
     jfh.append(`
       <table class="table-data">
         <thead>
           <tr>
+            <th><input type="checkbox" id="select-all-docs-checkbox"></th>
             <th>Nome</th>
             <th>Azioni</th>
           </tr>
@@ -666,9 +674,9 @@ const elencoDocs = () => {
     arr.forEach((docName, index) => {
       jfh.append(`
 <tr>
+<td><input type="checkbox" class="doc-checkbox" data-doc-name="${docName}"></td>
 <td>${docName}</td>
 <td><button class="link-show-doc btn-success" data-doc-index="${index}">Visualizza</button></td>
-<td><button class="delete-doc-btn btn-danger" data-doc-index="${index}">Elimina</button></td>
 </tr>
 `);
     });
@@ -679,6 +687,17 @@ const elencoDocs = () => {
   jfh.append("</div>");
   wnds.winfo.show(jfh.html());
   const element = wnds.winfo.w.getElement();
+
+  const selectAllCheckbox = element.querySelector("#select-all-docs-checkbox");
+  const docCheckboxes = element.querySelectorAll(".doc-checkbox");
+
+  if (selectAllCheckbox) {
+    selectAllCheckbox.addEventListener("change", (event) => {
+      docCheckboxes.forEach(checkbox => {
+        checkbox.checked = event.currentTarget.checked;
+      });
+    });
+  }
 
   element.querySelectorAll(".link-show-doc").forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -692,21 +711,28 @@ const elencoDocs = () => {
     });
   });
 
-  element.querySelectorAll(".delete-doc-btn").forEach((icon) => {
-    icon.addEventListener("click", async (event) => {
-      event.preventDefault();
-      const docIndex = event.currentTarget.dataset.docIndex;
-      if (docIndex !== null) {
-        const n = parseInt(docIndex, 10);
-        const docName = DocsMgr.name(n);
-        const ok = await confirm(`Confermi la cancellazione del documento "${docName}"?`);
-        if (ok) {
-          DocsMgr.delete(docName);
-          elencoDocs();
+  const deleteSelectedBtn = element.querySelector("#delete-selected-docs-btn");
+  if (deleteSelectedBtn) {
+    deleteSelectedBtn.addEventListener("click", async () => {
+      const selectedDocs = [];
+      docCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          selectedDocs.push(checkbox.dataset.docName);
         }
+      });
+
+      if (selectedDocs.length === 0) {
+        alert("Nessun documento selezionato.");
+        return;
+      }
+
+      const ok = await confirm(`Confermi la cancellazione di ${selectedDocs.length} documenti selezionati?`);
+      if (ok) {
+        DocsMgr.deleteSelected(selectedDocs);
+        elencoDocs();
       }
     });
-  });
+  }
 };
 
 const elencoKnBase = async () => {
