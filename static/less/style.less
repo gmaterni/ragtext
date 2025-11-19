@@ -70,8 +70,8 @@
 @dark-delete-btn-hover-fg: #ffffff;
 @dark-btn-success-bg: darken(@dark-color2, 20%);
 @dark-btn-success-hover-bg: darken(@dark-color2, 15%);
-@dark-btn-danger-bg: @dark-color1;
-@dark-btn-danger-hover-bg: lighten(@dark-color1, 10%);
+@dark-btn-danger-bg: #FF0000; // Pure Red
+@dark-btn-danger-hover-bg: #CC0000; // Darker Red for hover
 
 // Variabili aggiuntive per tema dark
 @dark-dialog-bg: lighten(@dark-bg, 5%);
@@ -123,8 +123,8 @@
 @light-delete-btn-hover-fg: #000000;
 @light-btn-success-bg: @light-color2;
 @light-btn-success-hover-bg: lighten(@light-color2, 5%);
-@light-btn-danger-bg: @light-color1;
-@light-btn-danger-hover-bg: lighten(@light-color1, 10%);
+@light-btn-danger-bg: #FF0000; // Pure Red
+@light-btn-danger-hover-bg: #CC0000; // Darker Red for hover
 
 // Variabili aggiuntive per tema light
 @light-dialog-bg: darken(@light-bg, 1%);
@@ -845,6 +845,10 @@ div.container {
       width: 80%; // Make buttons take up more width
       max-width: 300px; // Limit max width
     }
+    #delete-selected-docs-btn {
+      background-color: #FF0000 !important;
+      color: white !important;
+    }
   }
 }
 @keyframes fadeIn {
@@ -1338,11 +1342,11 @@ div.container {
     .btn-danger {
       border-color: @btn-danger-bg;
       background-color: @btn-danger-bg;
+      color: white; /* Added to ensure white text */
       &:hover {
         background-color: @btn-danger-hover-bg;
       }
-    }
-  }
+    }  }
   .table-data {
     tr:nth-child(even) {
       background-color: @table-tr-even-bg;
