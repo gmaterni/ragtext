@@ -15,15 +15,16 @@ export const docuentUploader = {
          <button class="btn-close tt-left " data-tt="Chiudi">X</button>
         </div>
         <div class="upload-dialog-content">
-          <h4>Upload file Text / PDF / DOCX</h4>
+          <h4>Carica Documenti nella Knowledge Base</h4>
+          <p class="upload-description">Trascina uno o più file (testo, PDF, DOCX) o un'intera cartella per aggiungerli alla tua knowledge base. I contenuti verranno estratti e resi ricercabili. I file duplicati verranno ignorati automaticamente.</p>
           
           <!-- Selector modalitÃ  upload -->
-          <div class="upload-mode-selector" style="margin-bottom: 15px;">
-            <label style="margin-right: 10px;">
-              <input type="radio" name="upload-mode" value="single" checked> File singoli
+          <div class="upload-mode-selector">
+            <label>
+              <input type="radio" name="upload-mode" value="single" checked> <span>File singoli</span>
             </label>
             <label>
-              <input type="radio" name="upload-mode" value="directory"> Intera directory
+              <input type="radio" name="upload-mode" value="directory"> <span>Intera directory</span>
             </label>
           </div>
           
@@ -33,17 +34,17 @@ export const docuentUploader = {
           </div>
           
           <!-- Barra di progresso -->
-          <div id="progress-container" style="display: none; margin: 10px 0;">
-            <div style="background: #e0e0e0; border-radius: 4px; overflow: hidden;">
-              <div id="progress-bar" style="background: #4CAF50; height: 20px; width: 0%; transition: width 0.3s;"></div>
+          <div id="progress-container" style="display: none;">
+            <div>
+              <div id="progress-bar"></div>
             </div>
-            <p id="progress-text" style="text-align: center; margin-top: 5px;">0 / 0 file processati</p>
+            <p id="progress-text">0 / 0 file processati</p>
           </div>
           
           <div id="file-list-container"></div>
           
           <!-- Riepilogo upload -->
-          <div id="upload-summary" style="display: none; margin-top: 15px; padding: 10px; background: #f5f5f5; border-radius: 4px;">
+          <div id="upload-summary" style="display: none;">
             <strong>Riepilogo:</strong>
             <div id="summary-content"></div>
           </div>
@@ -212,8 +213,10 @@ export const docuentUploader = {
     // Processa i file in sequenza
     for (let i = 0; i < validFiles.length; i++) {
       const file = validFiles[i];
+      const percentage = Math.round(((i + 1) / stats.total) * 100);
       progressText.textContent = `${i + 1} / ${stats.total} file processati`;
-      progressBar.style.width = `${((i + 1) / stats.total) * 100}%`;
+      progressBar.style.width = `${percentage}%`;
+      progressBar.textContent = `${percentage}%`;
 
       const result = await this.handleFile(file, true); // true = silenzioso (no alert)
 
@@ -230,13 +233,13 @@ export const docuentUploader = {
     // Mostra riepilogo finale
     summaryDiv.style.display = "block";
     summaryContent.innerHTML = `
-      <div style="margin: 5px 0;">âœ… Caricati con successo: <strong>${stats.success}</strong></div>
-      <div style="margin: 5px 0;">âš ï¸ Duplicati (ignorati): <strong>${stats.duplicates}</strong></div>
-      <div style="margin: 5px 0;">âŒ Errori: <strong>${stats.errors}</strong></div>
+      <div class="success">âœ… Caricati con successo: <strong>${stats.success}</strong></div>
+      <div class="duplicate">âš ï¸ Duplicati (ignorati): <strong>${stats.duplicates}</strong></div>
+      <div class="error">âŒ Errori: <strong>${stats.errors}</strong></div>
       ${stats.errorFiles.length > 0 ? `
-        <details style="margin-top: 10px;">
-          <summary style="cursor: pointer;">Mostra file con errori</summary>
-          <ul style="margin: 5px 0; padding-left: 20px;">
+        <details>
+          <summary>Mostra file con errori</summary>
+          <ul>
             ${stats.errorFiles.map(f => `<li>${f.name}: ${f.error}</li>`).join("")}
           </ul>
         </details>
@@ -279,8 +282,7 @@ export const docuentUploader = {
 
       // Aggiunge comunque un elemento visivo
       const fileItem = document.createElement("div");
-      fileItem.className = "file-list-item";
-      fileItem.style.color = "#ff9800";
+      fileItem.className = "file-list-item duplicate";
       fileItem.textContent = `${fileName} - Duplicato (ignorato)`;
       fileListContainer.appendChild(fileItem);
 
@@ -315,8 +317,7 @@ export const docuentUploader = {
       DocsMgr.add(fileName, text);
 
       const fileItem = document.createElement("div");
-      fileItem.className = "file-list-item";
-      fileItem.style.color = "#4CAF50";
+      fileItem.className = "file-list-item success";
       fileItem.textContent = `${fileName} - Caricato con successo`;
       fileListContainer.appendChild(fileItem);
 
@@ -331,8 +332,7 @@ export const docuentUploader = {
       }
 
       const fileItem = document.createElement("div");
-      fileItem.className = "file-list-item";
-      fileItem.style.color = "#f44336";
+      fileItem.className = "file-list-item error";
       fileItem.textContent = `${fileName} - Errore: ${errorMsg}`;
       fileListContainer.appendChild(fileItem);
 

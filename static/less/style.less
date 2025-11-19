@@ -1383,9 +1383,71 @@ div.container {
     }
     #file-list-container {
       border-color: @file-list-border;
+      .file-list-item {
+        border-bottom-color: @file-list-item-border;
+        &.success {
+          border-left-color: @upload-summary-item-success-color;
+          color: @upload-summary-item-success-color;
+        }
+        &.duplicate {
+          border-left-color: @upload-summary-item-duplicate-color;
+          color: @upload-summary-item-duplicate-color;
+        }
+        &.error {
+          border-left-color: @upload-summary-item-error-color;
+          color: @upload-summary-item-error-color;
+        }
+      }
     }
-    .file-list-item {
-      border-bottom-color: @file-list-item-border;
+
+    .upload-mode-selector {
+      background-color: @upload-mode-selector-bg;
+      border: 1px solid @upload-mode-selector-border;
+      label {
+        color: @upload-mode-selector-label-color;
+        input[type="radio"]:checked + span {
+          color: @upload-mode-selector-label-checked-color;
+          font-weight: bold;
+        }
+      }
+    }
+
+    #progress-container {
+      > div {
+        background: @progress-bar-bg;
+        #progress-bar {
+          background: @progress-bar-fill-bg;
+        }
+      }
+      #progress-text {
+        color: @text;
+      }
+    }
+
+    #upload-summary {
+      background: @upload-summary-bg;
+      border-color: @upload-summary-border;
+      color: @upload-summary-text;
+      #summary-content {
+        > div {
+          background: @upload-summary-item-bg;
+          &.success {
+            color: @upload-summary-item-success-color;
+          }
+          &.duplicate {
+            color: @upload-summary-item-duplicate-color;
+          }
+          &.error {
+            color: @upload-summary-item-error-color;
+          }
+        }
+        details {
+          background: @upload-summary-details-bg;
+          summary {
+            color: @upload-summary-text;
+          }
+        }
+      }
     }
   }
 
@@ -1606,6 +1668,27 @@ div.container {
   @dialog-bg: lighten(@dark-bg, 10%);
   @dialog-text: @dark-text;
 
+  // Variabili per l'upload summary (tema dark)
+  @upload-summary-bg: lighten(@dark-bg, 8%);
+  @upload-summary-border: @dark-color2;
+  @upload-summary-text: @dark-text;
+  @upload-summary-item-bg: lighten(@dark-bg, 12%);
+  @upload-summary-item-success-color: @dark-color2;
+  @upload-summary-item-duplicate-color: @dark-color3;
+  @upload-summary-item-error-color: @dark-color1;
+  @upload-summary-details-bg: lighten(@dark-bg, 15%);
+
+  // Variabili per il selettore di modalità upload (tema dark)
+  @upload-mode-selector-bg: lighten(@dark-bg, 10%);
+  @upload-mode-selector-border: @dark-color2;
+  @upload-mode-selector-label-color: @dark-text;
+  @upload-mode-selector-label-checked-color: @dark-color2;
+
+  // Variabili per la barra di progresso (tema dark)
+  @progress-bar-bg: lighten(@dark-bg, 15%);
+  @progress-bar-fill-bg: @dark-color2;
+
+
   // --- Applica Stili e Override ---
   .apply-theme();
 
@@ -1725,6 +1808,27 @@ div.container {
   @active-model-fg: darken(@light-color2, 10%);
   @dialog-bg: @light-bg;
   @dialog-text: @light-text;
+
+  // Variabili per l'upload summary (tema light)
+  @upload-summary-bg: darken(@light-bg, 3%);
+  @upload-summary-border: @light-color2;
+  @upload-summary-text: @light-text;
+  @upload-summary-item-bg: darken(@light-bg, 5%);
+  @upload-summary-item-success-color: @light-color2;
+  @upload-summary-item-duplicate-color: @light-color3;
+  @upload-summary-item-error-color: @light-color1;
+  @upload-summary-details-bg: darken(@light-bg, 8%);
+
+  // Variabili per il selettore di modalità upload (tema light)
+  @upload-mode-selector-bg: darken(@light-bg, 3%);
+  @upload-mode-selector-border: @light-color2;
+  @upload-mode-selector-label-color: @light-text;
+  @upload-mode-selector-label-checked-color: @light-color2;
+
+  // Variabili per la barra di progresso (tema light)
+  @progress-bar-bg: darken(@light-bg, 10%);
+  @progress-bar-fill-bg: @light-color2;
+
 
   // --- Applica Stili e Override ---
   .apply-theme();
