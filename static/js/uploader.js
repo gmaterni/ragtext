@@ -9,14 +9,14 @@ export const docuentUploader = {
   uploadMode: "single", // "single" o "directory"
 
   open() {
+    //AAA <h5>Carica Documenti nella Knowledge Base</h5>
     const htmlContent = `
       <div class="window-text">
         <div class="btn-wrapper">
          <button class="btn-close tt-left " data-tt="Chiudi">X</button>
         </div>
         <div class="upload-dialog-content">
-          <h4>Carica Documenti nella Knowledge Base</h4>
-          <p class="upload-description">Trascina uno o più file (testo, PDF, DOCX) o un'intera cartella per aggiungerli alla tua knowledge base. I contenuti verranno estratti e resi ricercabili. I file duplicati verranno ignorati automaticamente.</p>
+          <p class="upload-description">Trascina uno o più file (testo, PDF, DOCX) o un'intera cartella per aggiungerli alla knowledge base.</p>
           
           <!-- Selector modalitÃ  upload -->
           <div class="upload-mode-selector">
