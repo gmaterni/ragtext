@@ -650,12 +650,12 @@ const elencoDati = async () => {
 const elencoDocs = () => {
   const arr = DocsMgr.names();
   const jfh = UaJtfh();
-  jfh.append('<div class="docs-dialog">');
-  jfh.append("<h4>Elenco Documenti</h4>");
+  jfh.append('<div class="delete-dialog">');
+  // jfh.append("<h4>Elenco Documenti</h4>");
 
   if (arr.length > 0) {
     jfh.append(`
-      <div class="delete-actions" style="text-align: center; margin-bottom: 15px;">
+      <div class="delete-actions" >
         <button id="delete-selected-docs-btn" class="btn-danger">Cancella Documenti Selezionati</button>
       </div>
     `);
