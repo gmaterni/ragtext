@@ -991,6 +991,7 @@ const deleteAllData = async () => {
     const ok = await confirm("Confermi la cancellazione degli elementi selezionati?");
     if (ok) {
       for (const key of keysToDelete.ls) {
+        // AAA cancellazione dcumenit
         if (key == DATA_KEYS.KEY_DOCS)
           DocsMgr.deleteAll();
         else
