@@ -74,15 +74,15 @@ export const help0_html = `
         </p>
     </div>
     <div>
-                    <strong>Pulsante 3 (send2 / Invio)</strong>
-                <p>
-                    <strong>Conversazione:</strong> Invia la domanda all'LLM usando il "Contesto" creato per continuare o iniziare una conversazione.
-                </p>
-            </div>
-            <div>
-                <strong>Cancella Input</strong>
-                <p>Cancella il testo inserito nel campo di input.</p>
-            </div>
+        <strong>Pulsante 3 (send2 / Invio)</strong>
+        <p>
+            <strong>Conversazione:</strong> Invia la domanda all'LLM usando il "Contesto" creato per continuare o iniziare una conversazione.
+        </p>
+    </div>
+    <div>
+        <strong>Cancella Input</strong>
+        <p>Cancella il testo inserito nel campo di input.</p>
+    </div>
     <hr>
 
     <!-- Menu Laterale -->
@@ -97,7 +97,7 @@ export const help0_html = `
     <div>
         <strong>Documenti</strong>
         <ul>
-            <li><strong>Elenco Documenti:</strong> Mostra i documenti caricati. Puoi visualizzarli o cancellarli.</li>
+            <li><strong>Elenco Documenti:</strong> Mostra i documenti caricati. Puoi visualizzarli o cancellarli singolarmente o in gruppo.</li>
             <li><strong>Documenti di esempio:</strong> Carica file di testo di esempio per provare subito l'applicazione.</li>
         </ul>
     </div>
@@ -105,15 +105,15 @@ export const help0_html = `
         <strong>Configurazione</strong>
         <ul>
             <li><strong>Configurazione:</strong> Mostra la configurazione corrente del Provider LLM e del Tipo Documento selezionato.</li>
-            <li><strong>Calcolo Richieste:</strong> Calcola e mostra il numero di parti in cui verranno suddivisi i documenti caricati per la creazione della Knowledge Base, utile per stimare le richieste all'LLM.</li>
+            <li><strong>Calcolo Richieste:</strong> Stima il numero di richieste necessarie per creare la Knowledge Base in base ai documenti caricati.</li>
         </ul>
     </div>
     <div>
         <strong>Knowledge Base (KnBase)</strong>
         <ul>
             <li><strong>Visualizza:</strong> Mostra la Knowledge Base attuale.</li>
-            <li><strong>Archivia:</strong> Salva la Knowledge Base attuale con un nome.</li>
-            <li><strong>Elenco:</strong> Carica o elimina le Knowledge Base salvate.</li>
+            <li><strong>Archivia:</strong> Salva la Knowledge Base attuale con un nome per un uso futuro.</li>
+            <li><strong>Elenco:</strong> Mostra, carica o elimina le Knowledge Base archiviate.</li>
         </ul>
     </div>
     <div>
@@ -121,9 +121,9 @@ export const help0_html = `
         <ul>
             <li><strong>Visualizza:</strong> Mostra il Contesto attuale.</li>
             <li><strong>Archivia:</strong> Salva il Contesto attuale con un nome.</li>
-            <li><strong>Elenco:</strong> Carica o elimina i Contesti salvati.</li>
-            <li><strong>Domanda iniziale:</strong> Mostra la domanda utilizzata per creare il Contesto corrente.</li>
-            <li><strong>Risposta:</strong> Mostra la risposta generata dall'LLM basata sul Contesto.</li>
+            <li><strong>Elenco:</strong> Mostra, carica o elimina i Contesti archiviati.</li>
+            <li><strong>Domanda iniziale:</strong> Mostra la domanda usata per creare il Contesto corrente.</li>
+            <li><strong>Risposta:</strong> Mostra la prima risposta generata dall'LLM basata sul Contesto.</li>
         </ul>
     </div>
     <div>
@@ -131,13 +131,13 @@ export const help0_html = `
         <ul>
             <li><strong>Visualizza:</strong> Mostra l'intera cronologia della conversazione corrente.</li>
             <li><strong>Archivia:</strong> Salva la conversazione corrente con un nome.</li>
-            <li><strong>Elenco:</strong> Carica o elimina le conversazioni archiviate.</li>
+            <li><strong>Elenco:</strong> Mostra, carica o elimina le conversazioni archiviate.</li>
         </ul>
     </div>
     <div>
         <strong>Gestione Dati</strong>
         <ul>
-            <li><strong>Elenco Dati:</strong> Mostra un riepilogo di tutti i dati salvati nell'applicazione (Knowledge Base, Contesti, Conversazioni, configurazioni).</li>
+            <li><strong>Elenco Dati:</strong> Mostra un riepilogo di tutti i dati salvati (Knowledge Base, Contesti, Conversazioni, ecc.).</li>
             <li><strong>Cancella Dati:</strong> Permette di cancellare selettivamente o totalmente i dati salvati.</li>
         </ul>
     </div>
@@ -219,9 +219,9 @@ export const help2_html = `
             Parti dai tuoi documenti per creare una nuova Knowledge Base e iniziare una conversazione.
         </p>
         <ol>
-            <li><strong>Carica Documenti:</strong> Usa <strong>"Documenti di esempio"</strong> dal menu o <strong>"Upload file"</strong> per caricare i tuoi file.</li>
-            <li><strong>Crea Knowledge Base:</strong> Clicca il pulsante <strong>(1)</strong> per analizzare i documenti e creare la <em>Knowledge Base</em>. Al termine, puoi salvarla usando il menu <strong>Knowledge Base > Archivia</strong>.</li>
-            <li><strong>Crea Contesto:</strong> Scrivi una domanda specifica nel campo di input e clicca il pulsante <strong>(2)</strong>. Questo estrae le informazioni pertinenti dalla Knowledge Base e crea un <em>Contesto</em>.</li>
+            <li><strong>Carica Documenti:</strong> Usa <strong>"Documenti di esempio"</strong> dal menu o <strong>"Upload file"</strong> dalla barra superiore per caricare i tuoi file.</li>
+            <li><strong>Crea Knowledge Base:</strong> Clicca il pulsante <strong>(1)</strong> per analizzare i documenti. Al termine, puoi archiviarla usando il menu <strong>Knowledge Base > Archivia</strong>.</li>
+            <li><strong>Crea Contesto:</strong> Scrivi una domanda specifica nel campo di input e clicca il pulsante <strong>(2)</strong>. Questo crea un <em>Contesto</em> mirato per la tua domanda.</li>
             <li><strong>Conversa:</strong> Fai la stessa domanda (o una simile) e premi <strong>Invio</strong> (o il pulsante <strong>(3)</strong>) per avviare la conversazione basata sul Contesto appena creato.</li>
         </ol>
     </div>
@@ -230,18 +230,13 @@ export const help2_html = `
 
     <!-- SCENARIO 2 -->
     <div>
-        <strong>Scenario 2: Inizio da una Knowledge Base Esistente</strong>
+        <strong>Scenario 2: Inizio da una Knowledge Base Archiviata</strong>
         <p>
-            Usa una <em>Knowledge Base</em> che hai già salvato per iniziare una nuova indagine, senza ri-analizzare i documenti.
+            Usa una <em>Knowledge Base</em> che hai già archiviato per iniziare una nuova indagine, senza ri-analizzare i documenti.
         </p>
         <ol>
-            <li><strong>Carica Knowledge Base:</strong>
-                <ul>
-                    <li>Vai nel menu laterale a <strong>Knowledge Base > Elenco</strong>.</li>
-                    <li>Trova la base dati che ti interessa e clicca su <strong>"Carica"</strong>.</li>
-                </ul>
-            </li>
-            <li><strong>Crea Contesto:</strong> Scrivi una <strong>nuova domanda</strong> nel campo di input e clicca il pulsante <strong>(2)</strong> per creare un nuovo <em>Contesto</em> specifico per questa domanda.</li>
+            <li><strong>Carica Knowledge Base:</strong> Vai su <strong>Knowledge Base > Elenco</strong>, trova la base dati che ti interessa e clicca su <strong>"Carica"</strong>.</li>
+            <li><strong>Crea Contesto:</strong> Scrivi una <strong>nuova domanda</strong> nel campo di input e clicca il pulsante <strong>(2)</strong> per creare un nuovo <em>Contesto</em>.</li>
             <li><strong>Conversa:</strong> Premi <strong>Invio</strong> (o il pulsante <strong>(3)</strong>) per avviare la conversazione.</li>
         </ol>
     </div>
@@ -250,18 +245,13 @@ export const help2_html = `
 
     <!-- SCENARIO 3 -->
     <div>
-        <strong>Scenario 3: Inizio da un Contesto Esistente</strong>
+        <strong>Scenario 3: Inizio da un Contesto Archiviato</strong>
         <p>
-            Riprendi una conversazione precedente partendo da un <em>Contesto</em> che hai già salvato.
+            Riprendi una conversazione precedente partendo da un <em>Contesto</em> che hai già archiviato.
         </p>
         <ol>
-            <li><strong>Carica Contesto:</strong>
-                <ul>
-                    <li>Vai nel menu laterale a <strong>Contesto > Elenco</strong>.</li>
-                    <li>Trova il contesto che ti interessa e clicca su <strong>"Carica"</strong>.</li>
-                </ul>
-            </li>
-            <li><strong>Continua la Conversazione:</strong> Scrivi una domanda di approfondimento nel campo di input e premi <strong>Invio</strong> (o il pulsante <strong>(3)</strong>) per continuare la conversazione associata a quel contesto.</li>
+            <li><strong>Carica Contesto:</strong> Vai su <strong>Contesto > Elenco</strong>, trova il contesto che ti interessa e clicca su <strong>"Carica"</strong>.</li>
+            <li><strong>Continua la Conversazione:</strong> Scrivi una domanda di approfondimento e premi <strong>Invio</strong> (o il pulsante <strong>(3)</strong>) per continuare la discussione associata a quel contesto.</li>
         </ol>
     </div>
 </div>
