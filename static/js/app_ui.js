@@ -284,6 +284,11 @@ export const TextInput = {
     const ok = await confirm("Confermi creazioene Base di conoscenza ?");
     if (!ok)
       return;
+    // AAA google analyrics
+    gtag('event', 'createKnowledge', {
+      'event_category': 'Conversazione',
+      'event_label': 'send0'
+    });
     setResponseHtml("");
     Spinner.show();
     try {
@@ -324,7 +329,13 @@ export const TextInput = {
       const ok = await confirm(s)
       if (!ok) return;
     }
+    // AAA google analyrics
+    gtag('event', 'createKnowledge', {
+      'event_category': 'Conversazione',
+      'event_label': 'send1'
+    });
     try {
+
       Spinner.show();
       const webid = WebId.get();
       FirebaseLogger.sendLog("send1", webid)
@@ -354,6 +365,11 @@ export const TextInput = {
       alert("Ricorda di scrivere la Query  ");
       return;
     }
+    // AAA google analyrics
+    gtag('event', 'createKnowledge', {
+      'event_category': 'Conversazione',
+      'event_label': 'send2'
+    });
     Spinner.show();
     const query = this.inp.value.trim();
     try {
